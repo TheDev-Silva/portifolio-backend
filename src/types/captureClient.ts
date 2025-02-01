@@ -1,4 +1,4 @@
-export interface CaptureClient {
+export interface captureClient {
     id: string,
     name: string,
     email: string,
