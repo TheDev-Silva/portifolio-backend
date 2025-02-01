@@ -5,7 +5,9 @@ import { Routes } from './routes';
 
 
 const app = Fastify();
-
+app.get('/', (req, reply) => {
+  reply.send({ message: 'API funcionando!' });
+});
 app.register(Routes);
 app.register(cors)
 
