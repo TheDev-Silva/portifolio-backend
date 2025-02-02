@@ -1,16 +1,15 @@
 {
-    "compilerOptions": {
-      "target": "ESNext",
-      "module": "CommonJS",
-      "lib": ["ES2015"],
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "outDir": "./dist",
-      "rootDir": "./src",
-      "strict": true,
-      
-    },
-    "include": ["./src/**/*", "src/api", "src/api/index.ts"],
-    "exclude": ["node_modules"]
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "lib": ["ES2015"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
