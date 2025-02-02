@@ -26,11 +26,11 @@ fastify.setErrorHandler((error, request, reply) => {
   reply.code(500).send({ error: 'Erro interno no servidor.' });
 });
 
-fastify.get('/', (req, reply) => {
+fastify.get('/api/', (req, reply) => {
   reply.send({ message: 'API funcionando!' });
 });
 // Rota para obter clientes cadastrados
-fastify.get('/cadastrados', async (request, reply) => {
+fastify.get('/api/cadastrados', async (request, reply) => {
   const { startDate, endDate } = request.query as { startDate?: string; endDate?: string };
 
   try {
@@ -108,7 +108,7 @@ const clientSchema = z.object({
   message: z.string().min(1),
 });
 // Rota para cadastrar clientes
-fastify.post('api/clients', async (request, reply) => {
+fastify.post('/api/clients', async (request, reply) => {
   const result = clientSchema.safeParse(request.body);
   if (!result.success) {
     return reply.code(400).send({ error: 'Dados inválidos', details: result.error });
@@ -166,7 +166,7 @@ fastify.post('api/clients', async (request, reply) => {
 });
 
 // Rota para listar clientes
-fastify.get('api/clients', async (request, reply) => {
+fastify.get('/api/clients', async (request, reply) => {
   try {
     const clients = await prisma.captureClient.findMany({
       orderBy: { createdAt: 'desc' }, // Ordena pelos mais recentes
