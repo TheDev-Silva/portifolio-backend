@@ -26,6 +26,9 @@ fastify.setErrorHandler((error, request, reply) => {
   reply.code(500).send({ error: 'Erro interno no servidor.' });
 });
 
+fastify.get('/', (req, reply) => {
+  reply.send({ message: 'API funcionando!' });
+});
 // Rota para obter clientes cadastrados
 fastify.get('/cadastrados', async (request, reply) => {
   const { startDate, endDate } = request.query as { startDate?: string; endDate?: string };
