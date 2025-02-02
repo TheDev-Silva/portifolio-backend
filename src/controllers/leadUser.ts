@@ -32,8 +32,8 @@ export const leadUserController = async (
                 id,
                 name,
                 email,
-                message,
                 phone,
+                message,
             }
         });
         reply.status(201).send({ message: 'Lead criado com sucesso!', lead });

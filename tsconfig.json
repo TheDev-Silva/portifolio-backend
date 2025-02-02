@@ -3,13 +3,14 @@
       "target": "ESNext",
       "module": "CommonJS",
       "lib": ["ES2015"],
-      "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "outDir": "./dist",
-      "rootDir": "./src"
+      "rootDir": "./src",
+      "strict": true,
+      
     },
-    "include": ["./src/**/*", "api", "api/index.ts"],
+    "include": ["./src/**/*", "src/api", "src/api/index.ts"],
     "exclude": ["node_modules"]
 }
