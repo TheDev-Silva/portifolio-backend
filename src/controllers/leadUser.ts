@@ -25,7 +25,7 @@ export const leadUserController = async (
     request: FastifyRequest<{ Body: CaptureClient }>,
     reply: FastifyReply
 ) => {
-    const { id, name, email, message, phone, } = request.body
+    const { id, name, email, message, phone,  } = request.body
     try {
         const lead = await prisma.captureClient.create({
             data: {

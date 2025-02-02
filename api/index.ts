@@ -3,11 +3,12 @@ import cors from '@fastify/cors';
 import nodemailer from 'nodemailer';
 import * as dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import { z } from 'zod';
 
 dotenv.config();
 
 const prisma = new PrismaClient();
-const fastify = Fastify();
+export const fastify = Fastify();
 
 // Registra o CORS
 fastify.register(cors);
@@ -20,6 +21,10 @@ interface ClientInput {
   status?: 'CONTACT' | 'CONTRACT_SIGNED' | 'DROPPED_OUT';
   projectValue?: number;
 }
+fastify.setErrorHandler((error, request, reply) => {
+  console.error('Erro inesperado:', error);
+  reply.code(500).send({ error: 'Erro interno no servidor.' });
+});
 
 // Rota para obter clientes cadastrados
 fastify.get('/cadastrados', async (request, reply) => {
@@ -93,8 +98,19 @@ fastify.get('/cadastrados', async (request, reply) => {
   }
 });
 
+const clientSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().email(),
+  phone: z.string().min(10),
+  message: z.string().min(1),
+});
 // Rota para cadastrar clientes
 fastify.post('/clients', async (request, reply) => {
+  const result = clientSchema.safeParse(request.body);
+  if (!result.success) {
+    return reply.code(400).send({ error: 'Dados inválidos', details: result.error });
+  };
+
   const { name, email, phone, message } = request.body as ClientInput;
 
   if (!name || !email || !message) {
