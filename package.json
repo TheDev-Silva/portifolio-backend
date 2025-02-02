@@ -1,7 +1,7 @@
 {
   "name": "the-dev-silva-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "dev": "tsx watch src/server.ts vercel dev",
     "build": "vercel build",
