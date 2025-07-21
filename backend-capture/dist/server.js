@@ -45,10 +45,15 @@ const fastify = (0, fastify_1.default)();
 // Registra o CORS
 fastify.register(cors_1.default);
 // Registra as rotas
-fastify.get('/', (req, reply) => {
-    reply.send({ message: 'API funcionando!' });
+fastify.get('/', async (req, reply) => {
+    return { message: 'API funcionando!' };
 });
 fastify.register(clientsRoutes_1.clientRoutes);
+// Exporta como uma função para Vercel
+exports.default = async (req, res) => {
+    await fastify.ready();
+    fastify.server.emit('request', req, res);
+};
 // Inicia o servidor
 fastify.listen({ port: 3333, host: '0.0.0.0' }, (err, address) => {
     if (err) {
@@ -57,4 +62,3 @@ fastify.listen({ port: 3333, host: '0.0.0.0' }, (err, address) => {
     }
     console.log(`Server listening at ${address}`);
 });
-exports.default = fastify;
