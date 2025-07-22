@@ -6,7 +6,7 @@
     "dev": "tsx watch src/index.ts",
     "postinstall": "prisma generate",
     "build": "rimraf dist && prisma generate --no-engine && tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/index.js",
     "test": "jest --watch"
   },
   "engines": {
