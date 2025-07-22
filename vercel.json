@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "backend-capture/dist/server.js", 
+      "src": "backend-capture/src/dist/index.ts", 
       "use": "@vercel/node",
       "config": {
         "includeFiles": ["prisma/schema.prisma", "prisma/**"]
@@ -10,7 +10,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "backend-capture/dist/server.js"
+      "dest": "backend-capture/src/dist/index.ts"
     }
   ]
 }
